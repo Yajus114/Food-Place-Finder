@@ -3,7 +3,7 @@ import json
 from urllib.parse import urlencode
 
 
-def get_category_ids(cats, choices):
+def get_category_ids(cats: str, choices: list) -> str:
     res: str = ""
     for cat in cats.split(","):
         res += process.extract(cat, choices, scorer=fuzz.WRatio, limit=1)[0][0][:5] + ","
