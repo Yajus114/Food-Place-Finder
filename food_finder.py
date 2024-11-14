@@ -4,11 +4,9 @@ from urllib.parse import urlencode
 
 
 def get_category_ids(cats, choices):
-    res = ""
+    res: str = ""
     for cat in cats.split(","):
-        res += (
-            process.extract(cat, choices, scorer=fuzz.WRatio, limit=1)[0][0][:5] + ","
-        )
+        res += process.extract(cat, choices, scorer=fuzz.WRatio, limit=1)[0][0][:5] + ","
     return res[:-1]
 
 
@@ -37,7 +35,7 @@ if __name__ == "__main__":
         from rapidfuzz import fuzz, process
 
         with open("categories_list.txt", "r") as choices_file:
-            choices = choices_file.read().splitlines()
+            choices: list = choices_file.read().splitlines()
             cats: str = input("Enter the specific categories (comma separated): ")
             params["categories"] = get_category_ids(cats, choices)
 
@@ -46,8 +44,8 @@ if __name__ == "__main__":
     if response.status_code == 200:
         data = json.loads(response.text)
         for place in data.get("results", []):
-            name = place.get("name")
-            address = place.get("location", {}).get("formatted_address")
+            name: str = place.get("name")
+            address: str = place.get("location", {}).get("formatted_address")
             print(f"Name: {name}\nAddress: {address}\n")
     else:
         print(f"Request failed with status code: {response.status_code}")
