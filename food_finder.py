@@ -24,12 +24,7 @@ if __name__ == "__main__":
 
     params["query"] = input("Enter the details: ")
     params["near"] = input("Enter the locality (e.g. Gurgaon, Haryana): ")
-    params["limit"] = (
-        input("Enter: ")
-        if input("Enter how many responses you want to receive (default = 5) (y/n): ")
-        == "y"
-        else "5"
-    )
+    params["limit"] = input("Enter: ") if input("Enter how many responses you want to receive (default = 5) (y/n): ") == "y" else "5"
 
     if input("Would you like to input categories manually? (y/n): ") == "y":
         from rapidfuzz import fuzz, process
